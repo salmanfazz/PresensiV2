@@ -21,7 +21,6 @@ class JenjangController extends Controller
 	public function store(Request $request)
 	{
 		$rule = [
-			'id_jenjang'=>'required|string',
 			'jenjang'=>'required|string',
 		];
 		$this->validate($request, $rule);
@@ -29,7 +28,6 @@ class JenjangController extends Controller
 		$input = $request->all();
 		
 		$jenjang = new \App\Jenjang;
-		$jenjang->id_jenjang	= $input['id_jenjang'];
 		$jenjang->jenjang 		= $input['jenjang'];
 		$status = $jenjang->save();
 		

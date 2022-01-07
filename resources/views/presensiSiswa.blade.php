@@ -60,8 +60,8 @@
 						<form action="{{ url('/presensiSiswa/add') }}" method="post">
 							@csrf
 							<div class="form-group">
-								<label for="id_presensi" class="col-form-label">ID Presensi</label>
-								<input type="text" class="form-control" id="id_presensi" name="id_presensi">
+								<label for="id_presensi" class="col-form-label" hidden>ID Presensi</label>
+								<input type="text" class="form-control" id="id_presensi" name="id_presensi" hidden>
 							</div>
 							<div class="form-group">
 								<label for="nis" class="col-form-label">NIS</label><br>

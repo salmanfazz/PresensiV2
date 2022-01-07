@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 
-class PresensiController extends Controller
+class PresensiController extends Controller 
 {
 	public function __construct()
     {
@@ -45,7 +45,6 @@ class PresensiController extends Controller
 	public function store(Request $request)
 	{
 		$rule = [
-			'id_presensi'=>'required|string',
 			'nis'=>'required|string',
 			'id_mapel'=>'required|string',
 			'waktu'=>'required|string',
@@ -56,7 +55,6 @@ class PresensiController extends Controller
 		$input = $request->all();
 		
 		$presensi = new \App\Presensi;
-		$presensi->id_presensi	= $input['id_presensi'];
 		$presensi->nis 			= $input['nis'];
 		$presensi->id_mapel 	= $input['id_mapel'];
 		$presensi->waktu 		= $input['waktu'];

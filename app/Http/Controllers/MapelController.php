@@ -21,7 +21,6 @@ class MapelController extends Controller
 	public function store(Request $request)
 	{
 		$rule = [
-			'id_mapel'=>'required|string',
 			'mapel'=>'required|string',
 			'jadwal'=>'required|string',
 		];
@@ -30,7 +29,6 @@ class MapelController extends Controller
 		$input = $request->all();
 		
 		$mapel = new \App\Mapel;
-		$mapel->id_mapel	= $input['id_mapel'];
 		$mapel->mapel 		= $input['mapel'];
 		$mapel->jadwal 		= $input['jadwal'];
 		$status = $mapel->save();

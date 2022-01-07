@@ -57,8 +57,8 @@
 						<form action="{{ url('/kelas/add') }}" method="post">
 							@csrf
 							<div class="form-group">
-								<label for="id_kelas" class="col-form-label">ID Kelas</label>
-								<input type="text" class="form-control" id="id_kelas" name="id_kelas">
+								<label for="id_kelas" class="col-form-label" hidden>ID Kelas</label>
+								<input type="text" class="form-control" id="id_kelas" name="id_kelas" hidden>
 							</div>
 							<div class="form-group">
 								<label for="kelas" class="col-form-label">Nama</label><br>

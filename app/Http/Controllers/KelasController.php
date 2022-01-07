@@ -23,7 +23,6 @@ class KelasController extends Controller
 	public function store(Request $request)
 	{
 		$rule = [
-			'id_kelas'=>'required|string',
 			'kelas'=>'required|string',
 			'id_jenjang'=>'required|string',
 		];
@@ -32,7 +31,6 @@ class KelasController extends Controller
 		$input = $request->all();
 		
 		$kelas = new \App\Kelas;
-		$kelas->id_kelas	= $input['id_kelas'];
 		$kelas->kelas 		= $input['kelas'];
 		$kelas->id_jenjang 	= $input['id_jenjang'];
 		$status = $kelas->save();

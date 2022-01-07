@@ -57,8 +57,8 @@
 						<form action="{{ url('/mapel/add') }}" method="post">
 							@csrf
 							<div class="form-group">
-								<label for="id_mapel" class="col-form-label">ID Mapel</label>
-								<input type="text" class="form-control" id="id_mapel" name="id_mapel">
+								<label for="id_mapel" class="col-form-label" hidden>ID Mapel</label>
+								<input type="text" class="form-control" id="id_mapel" name="id_mapel" hidden>
 							</div>
 							<div class="form-group">
 								<label for="mapel" class="col-form-label">Nama</label><br>
