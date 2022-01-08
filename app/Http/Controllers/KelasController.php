@@ -15,16 +15,13 @@ class KelasController extends Controller
     public function index() 
 	{
 		$data['kelas'] = \App\Kelas::orderBy('id_kelas')
-						->get();
-		$data['jenjang'] = \App\Jenjang::orderBy('id_jenjang')
-						->get();				
+						->get();			
 		return view('kelas', $data);
 	}
 	public function store(Request $request)
 	{
 		$rule = [
 			'kelas'=>'required|string',
-			'id_jenjang'=>'required|string',
 		];
 		$this->validate($request, $rule);
 		
@@ -32,7 +29,6 @@ class KelasController extends Controller
 		
 		$kelas = new \App\Kelas;
 		$kelas->kelas 		= $input['kelas'];
-		$kelas->id_jenjang 	= $input['id_jenjang'];
 		$status = $kelas->save();
 		
 		if ($status) {
@@ -47,7 +43,6 @@ class KelasController extends Controller
 		$rule = [
 			'id_kelas'=>'required|string',
 			'kelas'=>'required|string',
-			'id_jenjang'=>'required|string',
 		];
 		$this->validate($request, $rule);
 		
@@ -55,7 +50,6 @@ class KelasController extends Controller
 		
 		$kelas = \App\Kelas::find($input['id_kelas']);
 		$kelas->kelas 		= $input['kelas'];
-		$kelas->id_jenjang 	= $input['id_jenjang'];
 		$status = $kelas->update();
 		
 		if ($status) {
@@ -86,7 +80,6 @@ class KelasController extends Controller
 			if($query != '') {
 				$data = \App\Kelas::where('id_kelas', 'like', '%'.$query.'%')
 				->orWhere('kelas', 'like', '%'.$query.'%')
-				->orWhere('id_jenjang', 'like', '%'.$query.'%')
 				->orderBy('id_kelas')
 				->get();
 			}
@@ -102,9 +95,8 @@ class KelasController extends Controller
 						<tr>
 							<td>'.$row->id_kelas.'</td>
 							<td>'.$row->kelas.'</td>
-							<td>'.$row->id_jenjang.'</td>
 							<td>
-								<center><a data-toggle="modal" data-id_kelas="'.$row->id_kelas.'" data-kelas="'.$row->kelas.'" data-id_jenjang="'.$row->id_jenjang.'" title="Add this item" class="open-EditKelas btn btn-primary" href="#addKelasDialog">Edit</a></center>
+								<center><a data-toggle="modal" data-id_kelas="'.$row->id_kelas.'" data-kelas="'.$row->kelas.'"  title="Add this item" class="open-EditKelas btn btn-primary" href="#addKelasDialog">Edit</a></center>
 							</td>
 							<td>
 								<form action = "'.url('/kelas', $row->id_kelas) .'" method = "post">

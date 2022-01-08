@@ -28,22 +28,27 @@
 					<tr>
 						<th class="th-sm">ID Presensi</th>
 						<th class="th-sm">NIS</th>
-						<th class="th-sm">ID Mapel</th>
+						<th class="th-sm">Kelas</th>
+						<th class="th-sm">Jenjang</th>
+						<th class="th-sm">Mapel</th>
 						<th class="th-sm">Waktu</th>
 						<th class="th-sm">Keterangan</th>
 					</tr>
 				</thead>
 				<tbody>
 				</tbody>
-				<tfoot>	
+				<!-- <tfoot>	
 					<tr>
 						<th>ID Presensi</th>
 						<th>NIS</th>
-						<th>ID Mapel</th>
+						<th>NAMA</th>
+						<th>KELAS</th>
+						<th>JENJANG</th>
+						<th>Mapel</th>
 						<th>Waktu</th>
 						<th>Keterangan</th>
 					</tr>
-				</tfoot>
+				</tfoot> -->
 			</table>
 		</div>
 		<!-- Modal Tambah -->
@@ -68,16 +73,34 @@
 								<select name="nis">
 									<option value="">-- Pilih NIS --</option>
 									@foreach ($siswa as $row)
-									<option value="{{ $row->nis}}">{{ $row->nis}} - {{ $row->nama}}</option>
+									<option value="{{ $row->nis}}">{{ $row->nama}}</option>
 									@endforeach
 								</select>
 							</div>
 							<div class="form-group">
-								<label for="id_mapel" class="col-form-label">ID Mapel</label><br>
+								<label for="id_kelas" class="col-form-label">Kelas</label><br>
+								<select name="id_kelas">
+									<option value="">-- Pilih Kelas --</option>
+									@foreach ($kelas as $row)
+									<option value="{{ $row->id_kelas}}">{{ $row->kelas}}</option>
+									@endforeach
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="id_jenjang" class="col-form-label">Jenjang</label><br>
+								<select name="id_jenjang">
+									<option value="">-- Pilih Jenjang --</option>
+									@foreach ($jenjang as $row)
+									<option value="{{ $row->id_jenjang}}">{{ $row->jenjang}}</option>
+									@endforeach
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="id_mapel" class="col-form-label">Mapel</label><br>
 								<select name="id_mapel">
-									<option value="">-- Pilih ID Mapel --</option>
+									<option value="">-- Pilih Mapel --</option>
 									@foreach ($mapel as $row)
-									<option value="{{ $row->id_mapel}}">{{ $row->id_mapel}} - {{ $row->mapel}}</option>
+									<option value="{{ $row->id_mapel}}">{{ $row->mapel}}</option>
 									@endforeach
 								</select>
 							</div>
@@ -127,15 +150,33 @@
 								<select name="nis">
 									<option value="">-- Pilih NIS --</option>
 									@foreach ($siswa as $row)
-									<option value="{{ $row->nis}}">{{ $row->nis}} - {{ $row->nama}}</option>
+									<option value="{{ $row->nis}}">{{ $row->nama}}</option>
 									@endforeach
 								</select>
+								<div class="form-group">
+								<label for="id_kelas" class="col-form-label">Kelas</label><br>
+								<select name="id_kelas">
+									<option value="">-- Pilih KELAS --</option>
+									@foreach ($kelas as $row)
+									<option value="{{ $row->id_kelas}}">{{ $row->kelas}}</option>
+									@endforeach
+								</select>
+							</div>
 							<div class="form-group">
-								<label for="id_mapel" class="col-form-label">ID Mapel</label><br>
+								<label for="id_jenjang" class="col-form-label">Jenjang</label><br>
+								<select name="id_jenjang">
+									<option value="">-- Pilih JENJANG --</option>
+									@foreach ($jenjang as $row)
+									<option value="{{ $row->id_jenjang}}">{{ $row->jenjang}}</option>
+									@endforeach
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="id_mapel" class="col-form-label">Mapel</label><br>
 								<select id="id_mapel" name="id_mapel">
-									<option value="">-- Pilih ID Mapel --</option>
+									<option value="">-- Pilih Mapel --</option>
 									@foreach ($mapel as $row)
-									<option value="{{ $row->id_mapel}}">{{ $row->id_mapel}} - {{ $row->mapel}}</option>
+									<option value="{{ $row->id_mapel}}">{{ $row->mapel}}</option>
 									@endforeach
 								</select>
 							</div>
@@ -173,11 +214,15 @@
 			$(document).on("click", ".open-EditPresensi", function () {
 				 var id_presensi = $(this).data('id_presensi');
 				 var nis = $(this).data('nis');
+				 var id_kelas = $(this).data('id_kelas');
+				 var id_jenjang = $(this).data('id_jenjang');
 				 var id_mapel = $(this).data('id_mapel');
 				 var waktu = $(this).data('waktu');
 				 var keterangan = $(this).data('keterangan');
 				 $(".modal-body #id_presensi").val( id_presensi );
 				 $(".modal-body #nis").val( nis );
+				 $(".modid-body #id_kelas").val( id_kelas );
+				 $(".modal-body #id_jenjang").val( id_jenjang );
 				 $(".modal-body #id_mapel").val( id_mapel );
 				 $(".modal-body #waktu").val( waktu );
 				 $(".modal-body #keterangan").val( keterangan );

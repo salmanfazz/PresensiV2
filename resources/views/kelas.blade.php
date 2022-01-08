@@ -27,7 +27,6 @@
 					<tr>
 						<th class="th-sm">ID Kelas</th>
 						<th class="th-sm">Nama</th>
-						<th class="th-sm">ID Jenjang</th>
 						<th class="th-sm" colspan="2"><center>Aksi</center></th>
 					</tr>
 				</thead>
@@ -37,7 +36,6 @@
 					<tr>
 						<th>ID Kelas</th>
 						<th>Nama</th>
-						<th>ID Jenjang</th>
 						<th colspan="2"><center>Aksi</center></th>
 					</tr>
 				</tfoot>
@@ -69,15 +67,6 @@
 									<option value="Komunitas Besar">Komunitas Besar</option>
 									<option value="Distance Learning Class">Distance Learning Class</option>
 									<option value="Belajar Mandiri">Belajar Mandiri</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="id_jenjang" class="col-form-label">ID Jenjang</label><br>
-								<select name="id_jenjang">
-									<option value="">-- Pilih ID Jenjang --</option>
-									@foreach ($jenjang as $row)
-									<option value="{{ $row->id_jenjang}}">{{ $row->id_jenjang}} - {{ $row->jenjang}}</option>
-									@endforeach
 								</select>
 							</div>
 					</div>
@@ -117,15 +106,6 @@
 									<option value="Belajar Mandiri">Belajar Mandiri</option>
 								</select>
 							</div>
-							<div class="form-group">
-								<label for="id_jenjang" class="col-form-label">ID Jenjang</label><br>
-								<select id="id_jenjang" name="id_jenjang">
-									<option value="">-- Pilih ID Jenjang --</option>
-									@foreach ($jenjang as $row)
-									<option value="{{ $row->id_jenjang}}">{{ $row->id_jenjang}} - {{ $row->jenjang}}</option>
-									@endforeach
-								</select>
-							</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -139,10 +119,8 @@
 			$(document).on("click", ".open-EditKelas", function () {
 				 var id_kelas = $(this).data('id_kelas');
 				 var kelas = $(this).data('kelas');
-				 var id_jenjang = $(this).data('id_jenjang');
 				 $(".modal-body #id_kelas").val( id_kelas );
 				 $(".modal-body #kelas").val( kelas );
-				 $(".modal-body #id_jenjang").val( id_jenjang );
 			});
 		</script>
 		<script>

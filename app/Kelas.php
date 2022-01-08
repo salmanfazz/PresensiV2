@@ -11,6 +11,6 @@ class Kelas extends Model
 	public $timestamps = false;
 	
 	protected $fillable = [
-		'id_kelas','kelas','id_jenjang'
+		'id_kelas','kelas'
 	];
 }

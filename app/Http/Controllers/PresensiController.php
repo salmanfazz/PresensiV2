@@ -17,7 +17,11 @@ class PresensiController extends Controller
 		$data['presensi'] = \App\Presensi::orderBy('id_presensi')
 						->get();
 		$data['siswa'] = \App\Siswa::orderBy('nis')
-						->get();
+						->get();		
+		$data['kelas'] = \App\Kelas::orderBy('id_kelas')
+						->get();				
+		$data['jenjang'] = \App\Jenjang::orderBy('id_jenjang')
+						->get();						
 		$data['mapel'] = \App\Mapel::orderBy('id_mapel')
 						->get();
 		return view('presensiSiswa', $data);
@@ -27,7 +31,11 @@ class PresensiController extends Controller
 		$data['presensi'] = \App\Presensi::orderBy('id_presensi')
 						->get();
 		$data['siswa'] = \App\Siswa::orderBy('nis')
-						->get();
+						->get();		
+		$data['kelas'] = \App\Kelas::orderBy('id_kelas')
+						->get();				
+		$data['jenjang'] = \App\Jenjang::orderBy('id_jenjang')
+						->get();					
 		$data['mapel'] = \App\Mapel::orderBy('id_mapel')
 						->get();
 		return view('presensi', $data);
@@ -37,7 +45,11 @@ class PresensiController extends Controller
 		$data['presensi'] = \App\Presensi::orderBy('id_presensi')
 						->get();
 		$data['siswa'] = \App\Siswa::orderBy('nis')
-						->get();
+						->get();	
+		$data['kelas'] = \App\Kelas::orderBy('id_kelas')
+						->get();				
+		$data['jenjang'] = \App\Jenjang::orderBy('id_jenjang')
+						->get();					
 		$data['mapel'] = \App\Mapel::orderBy('id_mapel')
 						->get();
 		return view('print', $data);
@@ -46,6 +58,8 @@ class PresensiController extends Controller
 	{
 		$rule = [
 			'nis'=>'required|string',
+			'id_kelas'=>'required|string',
+			'id_jenjang'=>'required|string',
 			'id_mapel'=>'required|string',
 			'waktu'=>'required|string',
 			'keterangan'=>'required|string',
@@ -56,6 +70,8 @@ class PresensiController extends Controller
 		
 		$presensi = new \App\Presensi;
 		$presensi->nis 			= $input['nis'];
+		$presensi->id_kelas 	= $input['id_kelas'];
+		$presensi->id_jenjang 	= $input['id_jenjang'];
 		$presensi->id_mapel 	= $input['id_mapel'];
 		$presensi->waktu 		= $input['waktu'];
 		$presensi->keterangan 	= $input['keterangan'];
@@ -73,6 +89,8 @@ class PresensiController extends Controller
 		$rule = [
 			'id_presensi'=>'required|string',
 			'nis'=>'required|string',
+			'id_kelas'=>'required|string',
+			'id_jenjang'=>'required|string',
 			'id_mapel'=>'required|string',
 			'waktu'=>'required|string',
 			'keterangan'=>'required|string',
@@ -83,6 +101,8 @@ class PresensiController extends Controller
 		
 		$presensi = \App\Presensi::find($input['id_presensi']);
 		$presensi->nis 			= $input['nis'];
+		$presensi->id_kelas 	= $input['id_kelas'];
+		$presensi->id_jenjang 	= $input['id_jenjang'];
 		$presensi->id_mapel 	= $input['id_mapel'];
 		$presensi->waktu 		= $input['waktu'];
 		$presensi->keterangan 	= $input['keterangan'];
@@ -116,6 +136,8 @@ class PresensiController extends Controller
 			if($query != '') {
 				$data = \App\Presensi::where('id_presensi', 'like', '%'.$query.'%')
 				->orWhere('nis', 'like', '%'.$query.'%')
+				->orWhere('id_kelas', 'like', '%'.$query.'%')
+				->orWhere('id_jenjang', 'like', '%'.$query.'%')
 				->orWhere('id_mapel', 'like', '%'.$query.'%')
 				->orWhere('waktu', 'like', '%'.$query.'%')
 				->orWhere('keterangan', 'like', '%'.$query.'%')
@@ -134,11 +156,13 @@ class PresensiController extends Controller
 						<tr>
 							<td>'.$row->id_presensi.'</td>
 							<td>'.$row->nis.'</td>
+							<td>'.$row->id_kelas.'</td>
+							<td>'.$row->id_jenjang.'</td>
 							<td>'.$row->id_mapel.'</td>
 							<td>'.$row->waktu.'</td>
 							<td>'.$row->keterangan.'</td>
 							<td>
-								<center><a data-toggle="modal" data-id_presensi="'.$row->id_presensi.'" data-nis="'.$row->nis.'" data-id_mapel="'.$row->id_mapel.'" " data-waktu="'.$row->waktu.'" " data-keterangan="'.$row->keterangan.'"title="Add this item" class="open-EditPresensi btn btn-primary" href="#addPresensiDialog">Edit</a></center>
+								<center><a data-toggle="modal" data-id_presensi="'.$row->id_presensi.'" data-nis="'.$row->nis.'"  data-id_kelas="'.$row->id_kelas.'" data-id_jenjang="'.$row->id_jenjang.'" data-id_mapel="'.$row->id_mapel.'" " data-waktu="'.$row->waktu.'" " data-keterangan="'.$row->keterangan.'"title="Add this item" class="open-EditPresensi btn btn-primary" href="#addPresensiDialog">Edit</a></center>
 							</td>
 							<td>
 								<form action = "'.url('/presensi', $row->id_presensi) .'" method = "post">
@@ -174,6 +198,8 @@ class PresensiController extends Controller
 			if($query != '') {
 				$data = \App\Presensi::where('id_presensi', 'like', '%'.$query.'%')
 				->orWhere('nis', 'like', '%'.$query.'%')
+				->orWhere('id_kelas', 'like', '%'.$query.'%')
+				->orWhere('id_jenjang', 'like', '%'.$query.'%')
 				->orWhere('id_mapel', 'like', '%'.$query.'%')
 				->orWhere('waktu', 'like', '%'.$query.'%')
 				->orWhere('keterangan', 'like', '%'.$query.'%')
@@ -192,6 +218,8 @@ class PresensiController extends Controller
 						<tr>
 							<td>'.$row->id_presensi.'</td>
 							<td>'.$row->nis.'</td>
+							<td>'.$row->id_kelas.'</td>
+							<td>'.$row->id_jenjang.'</td>
 							<td>'.$row->id_mapel.'</td>
 							<td>'.$row->waktu.'</td>
 							<td>'.$row->keterangan.'</td>

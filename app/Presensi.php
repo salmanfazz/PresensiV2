@@ -11,6 +11,6 @@ class Presensi extends Model
 	public $timestamps = false;
 	
 	protected $fillable = [
-		'id_presensi','nis','id_mapel','waktu','keterangan'
+		'id_presensi','nis', 'id_kelas', 'id_jenjang', 'mapel', 'waktu', 'keterangan'
 	];
 }
